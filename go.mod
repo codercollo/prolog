@@ -1,0 +1,8 @@
+module github.com.codercollo/proglog
+
+go 1.27.0
+
+require (
+	github.com/gorilla/mux v1.8.1
+	google.golang.org/protobuf v1.36.12
+)
