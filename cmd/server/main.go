@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com.codercollo/proglog/internal/server"
+	"github.com/codercollo/prolog/internal/server"
 )
 
 func main() {
