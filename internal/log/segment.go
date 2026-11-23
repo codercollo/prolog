@@ -27,7 +27,7 @@ func newSegment(dir string, baseOffset uint64, c Config) (*segment, error) {
 	var err error
 
 	// Open or create the append-only store file named after the base offset.
-	storeFile, err := os.OpenFile(path.Join(dir, fmt.Sprint("%d%s", baseOffset, ".store")),
+	storeFile, err := os.OpenFile(path.Join(dir, fmt.Sprintf("%d%s", baseOffset, ".store")),
 		os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
 		return nil, err

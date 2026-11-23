@@ -76,7 +76,7 @@ func (i *index) Read(in int64) (out uint32, pos uint64, err error) {
 
 	// Decode and return the record's offset and store position from the memory map.
 	out = enc.Uint32(i.mmap[pos : pos+offWidth])
-	pos = enc.Uint64(i.mmap[pos+entWidth : pos+entWidth])
+	pos = enc.Uint64(i.mmap[pos+offWidth : pos+entWidth])
 	return out, pos, nil
 }
 
@@ -102,6 +102,10 @@ func (i *index) Write(off uint32, pos uint64) error {
 // of data that's actually in it and closes the file.
 func (i *index) Close() error {
 	if err := i.mmap.Sync(gommap.MS_ASYNC); err != nil {
+		return err
+	}
+
+	if err := i.mmap.UnsafeUnmap(); err != nil {
 		return err
 	}
 
